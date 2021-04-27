@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
     users.push({ username, id: socket.id }); //dlaczego username to "username: "imie"?
     console.log(users);
     socket.broadcast.emit("newUser", {
-      author: "Chat Bot",
+      author: "chatBot",
       content: `${username} has joined the conversation!`,
     });
   });
@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
     if (leavingUser) {
       socket.broadcast.emit('userLeft', {
         author: 'chatBot',
-        content: `${username} has left the conversation`,
+        content: `${leavingUser.username} has left the conversation`,
       });
       users.splice(leavingUserIndex, 1);
     }
